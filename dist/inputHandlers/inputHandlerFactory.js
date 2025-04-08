@@ -7,7 +7,7 @@ var InputHandlerFactory = /** @class */ (function () {
     function InputHandlerFactory() {
     }
     InputHandlerFactory.createInputHandler = function (input) {
-        if (input.toLowerCase().startsWith('http')) {
+        if (typeof input === 'string' && input.toLowerCase().startsWith('http')) {
             return new httpInputHandler_1.HttpInputHandler();
         }
         else {
