@@ -4,7 +4,7 @@ import { IMediaInfoInputHandler } from './IMediaInfoInputHandler';
 
 export class InputHandlerFactory {
   public static createInputHandler(input: string): IMediaInfoInputHandler {
-    if (input.toLowerCase().startsWith('http')) {
+    if (typeof input === 'string' && input.toLowerCase().startsWith('http')) {
       return new HttpInputHandler();
     } else {
       return new FileInputHandler();
