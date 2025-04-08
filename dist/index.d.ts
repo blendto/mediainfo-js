@@ -1,4 +1,8 @@
-export type MediaInfoInput = URL | string;
+/// <reference types="node" />
+/// <reference types="node" />
+/// <reference types="node" />
+import { Stream } from 'stream';
+export type MediaInfoInput = URL | string | Buffer | Stream;
 export type MediaInfoData = any;
 export declare class MediaInfo {
     private lib;
