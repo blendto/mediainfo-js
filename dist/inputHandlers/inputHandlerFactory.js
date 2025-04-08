@@ -16,7 +16,7 @@ var InputHandlerFactory = /** @class */ (function () {
         else if (Buffer.isBuffer(input)) {
             return new bufferInputHandler_1.BufferInputHandler();
         }
-        else if (typeof input === 'string' && input.toLowerCase().startsWith('http')) {
+        else if (typeof input === 'string' && input.toLowerCase().startsWith('http') || input instanceof URL) {
             return new httpInputHandler_1.HttpInputHandler();
         }
         else {

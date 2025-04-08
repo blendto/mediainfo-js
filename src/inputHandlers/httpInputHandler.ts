@@ -4,7 +4,7 @@ import { Duplex } from 'stream';
 import { IMediaInfoInputHandler } from './IMediaInfoInputHandler';
 
 export class HttpInputHandler implements IMediaInfoInputHandler {
-  public openStream(input: string): Duplex {
+  public openStream(input: string | URL): Duplex {
     try {
       const stream = got.stream(input);
       if (stream.errored) {

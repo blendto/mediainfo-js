@@ -12,7 +12,7 @@ export class InputHandlerFactory {
       return new StreamInputHandler();
     } else if (Buffer.isBuffer(input)) {
       return new BufferInputHandler();
-    } else if (typeof input === 'string' && input.toLowerCase().startsWith('http')) {
+    } else if (typeof input === 'string' && input.toLowerCase().startsWith('http') || input instanceof URL) {
       return new HttpInputHandler();
     } else {
       return new FileInputHandler();
