@@ -1,7 +1,6 @@
 import { ReadStream, createReadStream } from 'fs';
 import { MediaInfoInputError } from '../errors';
 import { IMediaInfoInputHandler } from './IMediaInfoInputHandler';
-
 export class FileInputHandler implements IMediaInfoInputHandler {
   public openStream(input: string): ReadStream {
     try {

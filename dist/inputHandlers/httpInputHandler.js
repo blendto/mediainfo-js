@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.HttpInputHandler = void 0;
 var got_1 = require("got");
-var errors_1 = require("src/errors");
+var errors_1 = require("../errors");
 var HttpInputHandler = /** @class */ (function () {
     function HttpInputHandler() {
     }

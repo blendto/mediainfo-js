@@ -1,5 +1,5 @@
 import got from 'got';
-import { MediaInfoInputError } from 'src/errors';
+import { MediaInfoInputError } from '../errors';
 import { Duplex } from 'stream';
 import { IMediaInfoInputHandler } from './IMediaInfoInputHandler';
 
@@ -12,7 +12,11 @@ export class HttpInputHandler implements IMediaInfoInputHandler {
       }
       return stream;
     } catch (err) {
-      throw new MediaInfoInputError('Could not open read stream from HTTP address', input, err);
+      throw new MediaInfoInputError(
+        'Could not open read stream from HTTP address',
+        input,
+        err,
+      );
     }
   }
 }
