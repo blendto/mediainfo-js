@@ -1,5 +1,4 @@
 import { Stream } from 'stream';
-import * as MediaInfoLib from '../lib/MediaInfoWasm';
 import { MediaInfoError } from './errors';
 import { InputHandlerFactory } from './inputHandlers/inputHandlerFactory';
 
@@ -12,9 +11,16 @@ type ErrorHandlerFunction = (reason: any) => void;
 export class MediaInfo {
   private lib;
 
+  private libConstructor: any;
+
+
+  constructor(mediaInfoWasmLib) {
+    this.libConstructor = mediaInfoWasmLib;
+  }
+
   public async instantiateLib() {
     try {
-      this.lib = await MediaInfoLib({});
+      this.lib = await this.libConstructor({});
     } catch (e) {
       throw new MediaInfoError('Failed to instantiate MediaInfoLib', e);
     }
