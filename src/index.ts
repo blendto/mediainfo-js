@@ -1,6 +1,7 @@
 import { Stream } from 'stream';
 import { MediaInfoError } from './errors';
 import { InputHandlerFactory } from './inputHandlers/inputHandlerFactory';
+import * as MediaInfoLib from '../lib/MediaInfoWasm';
 
 export type MediaInfoInput = URL | string | Buffer | Stream;
 
@@ -11,16 +12,15 @@ type ErrorHandlerFunction = (reason: any) => void;
 export class MediaInfo {
   private lib;
 
-  private libConstructor: any;
+  private wasmFileLocator?: () => string;
 
-
-  constructor(mediaInfoWasmLib) {
-    this.libConstructor = mediaInfoWasmLib;
+  constructor(params?: { wasmFileLocator?: () => string }) {
+    this.wasmFileLocator = params?.wasmFileLocator;
   }
 
   public async instantiateLib() {
     try {
-      this.lib = await this.libConstructor({});
+      this.lib = await MediaInfoLib({ locateFile: this.wasmFileLocator });
     } catch (e) {
       throw new MediaInfoError('Failed to instantiate MediaInfoLib', e);
     }

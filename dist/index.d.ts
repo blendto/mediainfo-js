@@ -1,16 +1,17 @@
+/// <reference types="node" />
+/// <reference types="node" />
 import { Stream } from 'stream';
-
-type MediaInfoInput = URL | string | Buffer | Stream;
-type MediaInfoData = any;
-declare class MediaInfo {
+export type MediaInfoInput = URL | string | Buffer | Stream;
+export type MediaInfoData = any;
+export declare class MediaInfo {
     private lib;
-    private libConstructor;
-    constructor(mediaInfoWasmLib: any);
+    private wasmFileLocator?;
+    constructor(params?: {
+        wasmFileLocator?: () => string;
+    });
     instantiateLib(): Promise<void>;
     getInfo(input: MediaInfoInput): Promise<MediaInfoData>;
     private static normalizeInput;
     private static getDataStream;
     private getMediaInfoData;
 }
-
-export { MediaInfo, type MediaInfoData, type MediaInfoInput };
